@@ -30,8 +30,9 @@ class model_saving:
 
 class variable_importance:
 
-    def __init__(self, model, X_train, Y_train, X_test, Y_test, global_auc=0.5, roc_area="prob"):
+    def __init__(self, model, sample_name, X_train, Y_train, X_test, Y_test, global_auc=0.5, roc_area="prob"):
         self.m_model = model
+        self.m_sample_name = sample_name
         self.m_x_train = X_train
         self.m_y_train = Y_train
         self.m_x_test = X_test
@@ -133,7 +134,7 @@ class variable_importance:
         import matplotlib.pyplot as plt
         fig = shap.plots.heatmap(shap_values, show=False) # shap.summary_plot(shap_values, X_test.iloc[0:1000,:])
         f = plt.gcf()
-        f.savefig('heatmap.png')
+        f.savefig("./figures/"+self.m_sample_name+"_heatmap.png")
         plt.close(f)
 
 
